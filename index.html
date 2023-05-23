@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP Address and Location Lookup</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('https://api.ipify.org?format=json', function(data) {
+        $('#ip-address').text(data.ip);
+        $.getJSON('https://ipapi.co/' + data.ip + '/json/', function(data) {
+          $('#location').text(data.city + ', ' + data.region + ', ' + data.country);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>IP Address and Location Lookup</h1>
+  <p>Your IP address: <span id="ip-address"></span></p>
+  <p>Your location: <span id="location"></span></p>
+</body>
+</html>
